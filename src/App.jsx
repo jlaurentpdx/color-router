@@ -1,27 +1,36 @@
 import {
+  Switch,
   Link,
   Redirect,
   BrowserRouter as Router,
   Route,
+  useParams,
 } from 'react-router-dom';
 
 import styles from './App.css';
 
 function RGB() {
-  // 🚨 Get values for r, g, and b from params
-  // 🚨 Uncomment next lines after importing
-  // return (
-  // <div
-  //   className={styles.fill}
-  //   style={{ background: `rgb(${r}, ${g}, ${b})` }}
-  // >
-  //   <p>{`rgb(${r},${g},${b})`}</p>
-  // </div>
-  // );
+  const { r, g, b } = useParams();
+  return (
+    <div
+      className={styles.fill}
+      style={{ background: `rgb(${r}, ${g}, ${b})` }}
+    >
+      <p>{`rgb(${r},${g},${b})`}</p>
+    </div>
+  );
 }
 
 function ScreenColor() {
-  return <div>{/* Create Route Inside Switch */}</div>;
+  return (
+    <div>
+      <Switch>
+        <Route path="/rgb/:r/:g/:b">
+          <RGB />
+        </Route>
+      </Switch>
+    </div>
+  );
 }
 
 export default function App() {
@@ -29,12 +38,12 @@ export default function App() {
     <Router>
       <header>
         <Route exact path="/">
-          <Redirect to="/rgb/192/192/192" />
+          <Redirect to="/rgb/234/135/182" />
         </Route>
         <ul>
-          <Link to="/rgb/192/192/192">Silver</Link>
-          <Link to="/rgb/220/20/60">Crimson</Link>
-          <Link to="/rgb/147/112/219">Purple</Link>
+          <Link to="/rgb/144/70/207">Dark Orchid</Link>
+          <Link to="/rgb/204/89/210">Fuchsia Crayola</Link>
+          <Link to="/rgb/234/135/182">Persian Pink</Link>
         </ul>
       </header>
 
